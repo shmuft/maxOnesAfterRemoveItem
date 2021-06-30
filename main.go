@@ -14,16 +14,18 @@ func maxOnesAfterRemoveItem(bitArray []byte) uint {
 		if !zeroExpected && i == len(bitArray)-1 && bitArray[i] == 1 {
 			continue
 		}
-		if bitArray[i] == 1 {
-			sumRight++
-		} else {
+
+		if bitArray[i] == 0 {
 			zeroExpected = true
 			if sumLeft+sumRight > maxOnes {
 				maxOnes = sumLeft + sumRight
 			}
 			sumLeft = sumRight
 			sumRight = 0
+			continue
 		}
+
+		sumRight++
 	}
 
 	if sumLeft+sumRight > maxOnes {
